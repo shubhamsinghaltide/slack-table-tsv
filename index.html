@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slack Table Maker – TSV generator</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+  <h1>Slack Table Maker</h1>
+  <p>Build or paste a table, then copy it as TSV (or a rich table) to paste into Slack.</p>
+</header>
+<main>
+  <section class="card">
+    <h2>1 · Table</h2>
+    <div class="toolbar">
+      <button id="addRow">+ Row</button>
+      <button id="addCol">+ Column</button>
+      <button id="clear">Clear</button>
+      <label class="chk"><input type="checkbox" id="hasHeader" checked> First row is header</label>
+    </div>
+    <div class="grid-wrap"><table id="grid"></table></div>
+    <p class="hint">Tip: click any cell and paste data copied from Excel / Google Sheets / a TSV or CSV — it fills the grid automatically. JSON works too: an array of objects (keys become the header) or an array of arrays. Tab / Enter move between cells.</p>
+  </section>
+
+  <section class="card">
+    <h2>2 · Output</h2>
+    <div class="toolbar">
+      <button class="primary" id="copyTsv">Copy TSV</button>
+      <button id="copyRich">Copy as rich table</button>
+      <button id="copyCode">Copy aligned (code block)</button>
+      <button id="dlTsv">Download .tsv</button>
+    </div>
+    <textarea id="out" readonly></textarea>
+    <p class="hint">
+      <b>Copy TSV</b>: plain tab-separated text. <b>Rich table</b>: puts an HTML table on the clipboard so Slack (canvas/messages that support tables) renders a real table. <b>Aligned</b>: monospaced, space-padded text inside triple backticks — works in any Slack message.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Import</h2>
+    <textarea id="imp" placeholder="Paste TSV, CSV, or JSON here, then click Load…"></textarea>
+    <div class="toolbar" style="margin-top:8px">
+      <button id="load">Load into grid</button>
+    </div>
+  </section>
+</main>
+<div id="toast"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
